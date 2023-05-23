@@ -13,32 +13,42 @@ const SideNav = styled(Box)({
   borderRadius: "0px 10px",
   display: "flex",
   flexDirection: "column",
-  color: '#27374D',
-  fontSize: '20px',
+  gap: '10px',
+  color: "#27374D",
+  fontSize: "20px",
   fontWeight: 500,
+  background: '#fff',
+  "& .MuiBox-root.main": {
+    backgroundColor: "#DDE6ED",
+    color: "#526D82",
+  },
 });
 const Items = styled(Box)({
   display: "flex",
   alignItems: "center",
-  gap: '20px',
-  padding: '10px 48px',
+  gap: "20px",
+  padding: "10px 48px",
+  cursor: 'pointer',
+  ':hover' : {
+    backgroundColor: "#9DB2BF",
+  }
 });
 const Title = styled(Typography)({
-    fontSize: '24px',
-    fontWeight: '600',
+  fontSize: "24px",
+  fontWeight: "600",
 });
 
 function SideNavbar() {
   return (
     <SideNav>
-      <Items style={{backgroundColor: '#DDE6ED', color: '#526D82'}}>
-          <Dashboard fontSize="medium" />
-        <Title>
-          Dashboard
-        </Title>
+      <Items className="main">
+        <Dashboard fontSize="medium" />
+        <Title>Dashboard</Title>
       </Items>
 
-      <Items></Items>
+      <Items>Bitcoin</Items>
+      <Items>Ethereum</Items>
+      <Items>DodgeCoin</Items>
     </SideNav>
   );
 }
