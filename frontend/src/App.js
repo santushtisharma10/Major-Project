@@ -6,6 +6,7 @@ import Content from "./components/Content";
 const BoxStyle = styled(Box)({
   marginLeft: "300px",
   padding: "48px 10px",
+  width: '100%'
 });
 const Header = styled(Typography)({
   fontSize: "36px",
