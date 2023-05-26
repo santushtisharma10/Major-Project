@@ -1,31 +1,56 @@
-import React from "react";
-import { styled, Box } from "@mui/material";
-import "react-vis/dist/style.css";
-
+import React, { useState } from "react";
+//mui
+import { styled, Box, Typography } from "@mui/material";
+//library
 import {
   LineSeries,
   VerticalGridLines,
   HorizontalGridLines,
   XAxis,
   YAxis,
-  FlexibleWidthXYPlot
+  FlexibleWidthXYPlot,
 } from "react-vis";
+//css
+import "react-vis/dist/style.css";
+//images
+import bitcoinImg from "../bitcoin.gif";
 
 const ContentBox = styled(Box)({
   marginTop: "28px",
   display: "flex",
   flexDirection: "column",
 });
-const InfoCards = styled(Box)({
+const Header = styled(Box)({
   display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: "40px",
+});
+const Title = styled(Box)({
+  display: "flex",
+  alignItems: "center",
   gap: "20px",
 });
+const InfoTitle = styled(Typography)({
+  fontSize: '16px',
+  fontWeight: 800,
+  color:"#3C4048",
+})
+const InfoText = styled(Typography)({
+  fontSize: '28px',
+  fontWeight: 600
+})
+const InfoCards = styled(Box)({
+  display: "flex",
+  gap: "10px",
+});
 const ContentCard = styled(Box)({
-  padding: "36px 48px",
-  margin: "25px 0",
+  padding: "36px",
+  margin: "20px 0",
   width: "100%",
 });
 function Content() {
+  const [polarity, setPolarity] = useState(true)
   const data = [
     { x: 0, y: 8 },
     { x: 1, y: 5 },
@@ -59,17 +84,57 @@ function Content() {
 
   return (
     <ContentBox>
-      <ContentCard className="shadow" style={{ width: "100%" }}>
-        Bitcoin
+      <ContentCard className="shadow">
+        <Header>
+          <Title>
+            <img src={bitcoinImg} height={80} alt="bitcoin" />
+            <div>
+              <Typography fontSize={36} fontWeight={600}>
+                Bitcoin
+              </Typography>
+              <Typography fontSize={16} fontWeight={800} color="#3C4048">
+                Digital Currency
+              </Typography>
+            </div>
+          </Title>
+          <div>
+            <Typography fontSize={20} fontWeight={600} color="#3C4048">
+              Price
+            </Typography>
+            <Typography fontSize={28} fontWeight={900} color="#2192FF">
+              $1378
+            </Typography>
+          </div>
+        </Header>
+        <Typography>
+          Bitcoin is a protocol which implements a highly available, public,
+          permanent, and decentralized ledger. In order to add to the ledger, a
+          user must prove they control an entry in the ledger. The user can
+          update the ledger, assigning some of their bitcoin to another entry in
+          the ledger. Because the token has characteristics of money, it can be
+          thought of as a digital currency.
+        </Typography>
       </ContentCard>
       <InfoCards>
-        <ContentCard className="shadow">info 1</ContentCard>
-        <ContentCard className="shadow">info 1</ContentCard>
-        <ContentCard className="shadow">info 1</ContentCard>
+        <ContentCard style={{padding: '20px'}} className="shadow">
+          <InfoTitle>Current Price</InfoTitle>
+          <InfoText>$41</InfoText>
+        </ContentCard>
+        <ContentCard className="shadow" style={{padding: '20px'}}>
+          <InfoTitle>Price Prediction</InfoTitle>
+          <div style={{display: 'flex', justifyContent: 'space-between'}}>
+            <InfoText>$40</InfoText>
+            <InfoText style={{color: 'red'}}>-1.6%</InfoText>
+          </div>
+        </ContentCard>
+        <ContentCard className="shadow" style={{padding: '20px'}}>
+          <InfoTitle>Public Sentiment</InfoTitle>
+          <InfoText style={{color: polarity ? 'green' : 'red' }}>Bearish</InfoText>
+        </ContentCard>
       </InfoCards>
 
       <ContentCard className="shadow">
-      <FlexibleWidthXYPlot style={{width: '100%'}}  height={300}>
+        <FlexibleWidthXYPlot style={{ width: "100%" }} height={300}>
           <HorizontalGridLines />
           <VerticalGridLines />
           <XAxis />
