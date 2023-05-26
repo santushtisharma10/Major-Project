@@ -4,8 +4,8 @@ import SideNavbar from "./components/SideNavbar";
 import Content from "./components/Content";
 
 const BoxStyle = styled(Box)({
-  marginLeft: "300px",
-  padding: "48px 10px",
+  marginLeft: "250px",
+  padding: "48px 50px",
   width: '100%'
 });
 const Header = styled(Typography)({
